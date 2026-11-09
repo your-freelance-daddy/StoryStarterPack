@@ -1,4 +1,34 @@
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Story Starter Cards by EKOLITIKA</title>
+
+
+
+  <!-- Google Tag Manager / Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TMKVRV67"></script>
+
+  <script>
+
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('js', new Date());
+
+  </script>
+
+
+
+  <style>
 /* ==========================================
    EKOLITIKA — STORY STARTER CARDS
    Visual redesign / mobile-first
@@ -334,7 +364,7 @@ h1 {
 }
 
 .card-back::after {
-  content: "01 — 180";
+  content: "STORY STARTER";
   position: absolute;
   bottom: 27px;
   left: 28px;
@@ -982,3 +1012,586 @@ button:disabled {
     scroll-behavior: auto !important;
   }
 }
+</style>
+
+</head>
+
+<body>
+
+  <div class="main-container">
+
+    <div class="header">
+
+      <img src="ekolitika-logo.png" alt="EKOLITIKA" class="logo">
+
+      <h1>Story Starter Cards</h1>
+
+      <p class="subtitle">Draw a card. Spark a story. Share your moment.</p>
+
+    </div>
+
+
+
+    <div class="card-info">
+
+      <span id="deckInfo">90 cards in the deck</span>
+
+      <span id="cardNumber" style="display:none;"> • Card drawn</span>
+
+    </div>
+
+
+
+    <div class="card-container">
+
+      <div class="card-flip" id="cardFlip">
+
+        <div class="card-back" id="cardBack">
+
+          <span>Click below to draw your story starter</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="controls">
+
+      <button onclick="drawCard()" id="drawBtn">🎴 Draw a Card</button>
+
+      <button onclick="shareCard()" class="secondary" id="shareBtn" disabled>📤 Share Story</button>
+
+    </div>
+
+
+
+    <div class="about-section">
+
+      <h2>Why Story Starter Cards?</h2>
+
+      <p>
+
+        In a world of endless digital noise, we often forget the power of authentic, circular storytelling. 
+
+        Story Starter Cards are designed to help you reconnect with the stories that matter—stories rooted in 
+
+        sustainability, community, and the wisdom of nature.
+
+      </p>
+
+
+
+      <h3>What Makes This Different?</h3>
+
+      <p>
+
+        These aren't just prompts—they're bridges. Each card is carefully crafted to connect personal experiences 
+
+        with sustainable living, inspired by EKOLITIKA's philosophy: learning from nature to create a more 
+
+        sustainable future in every aspect of our lives.
+
+      </p>
+
+
+
+      <h3>The EKOLITIKA Approach</h3>
+
+      <p>
+
+        <strong>Sustainable storytelling</strong> means creating narratives that come full circle—stories that 
+
+        teach, inspire, and perpetuate themselves through sharing. Just as nature operates in cycles, our stories 
+
+        should too. When you draw a card and share your story, you're not just answering a prompt—you're 
+
+        contributing to a growing ecosystem of wisdom.
+
+      </p>
+
+
+
+      <ul>
+
+        <li><strong>Circular process:</strong> Every story shared inspires another story</li>
+
+        <li><strong>Rooted in nature:</strong> Prompts connect you to sustainable thinking</li>
+
+        <li><strong>Community-driven:</strong> Built from Erasmus+ storytelling projects</li>
+
+        <li><strong>Accessible storytelling:</strong> Everyone has a story worth sharing</li>
+
+      </ul>
+
+
+
+      <h3>How It Works</h3>
+
+      <p>
+
+        Draw a card. Reflect on the prompt. Share your story with your community, on social media, or in your 
+
+        journal. Each card invites you to think about sustainability not just as environmental action, but as a 
+
+        holistic way of living—sustainable relationships, sustainable habits, sustainable futures.
+
+      </p>
+
+
+
+      <p>
+
+        This platform was born from youth work, storytelling workshops, and countless conversations about how 
+
+        we can use stories to create positive change. It's free, open, and designed to be shared.
+
+      </p>
+
+
+
+      <div class="powered-by">
+
+        <strong>Powered by EKOLITIKA</strong>
+
+        An NGO dedicated to learning sustainable methods from nature and applying them to every aspect of life—
+
+        from education to storytelling, from community building to personal growth.
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="toast" id="toast">✓ Copied to clipboard</div>
+
+
+
+  <script>
+
+    const cards = [
+
+      "Tell a 3-sentence story about something you threw away today. Did it deserve a second life?",
+
+      "Capture a photo of your favorite corner in your neighborhood. What story does it hold?",
+
+      "Share one thing you learned from a friend this week.",
+
+      "What's a moment this week where you felt truly present?",
+
+      "Describe a small act of kindness you witnessed (or did) today.",
+
+      "Tell the story of your favorite 'third place'—where you feel like yourself.",
+
+      "What's one thing in nature you noticed this week that most people miss?",
+
+      "Share a story about a choice you made because it felt sustainable.",
+
+      "Who made you feel heard this week? What did they do?",
+
+      "Describe your ideal day if you could make it waste-free.",
+
+      "Tell a story about a community space that matters to you.",
+
+      "What's a story you've been wanting to tell but haven't?",
+
+      "Share a micro-story (under 50 words) about something that changed your day.",
+
+      "Describe a moment where you felt connected to nature.",
+
+      "Tell the story of an unexpected friendship.",
+
+      "What's one sustainable choice you're making this week?",
+
+      "Share a story about learning something from failure.",
+
+      "Describe a meal shared with people you love.",
+
+      "Tell a story about a place that feels like home.",
+
+      "What's one story from your childhood that still shapes you?",
+
+      "Describe a moment of unexpected joy this week.",
+
+      "Tell the story of something you created by hand.",
+
+      "Share a story about standing up for something you believe in.",
+
+      "What's a story your family tells about you?",
+
+      "Describe a time you helped someone see things differently.",
+
+      "Tell a story about a small group gathering (your 'third place').",
+
+      "What's one story from a book, film, or podcast that stuck with you?",
+
+      "Share a story about learning to let go.",
+
+      "Describe a moment where you felt proud of yourself.",
+
+      "Share the story of a place that shaped who you are today.",
+
+      "Describe a moment when you discovered a hidden talent.",
+
+      "Tell about a tradition you want to pass down to future generations.",
+
+      "Recall a conversation that completely shifted your perspective.",
+
+      "Share a memory connected to your favorite season.",
+
+      "Describe a time when nature taught you something valuable.",
+
+      "Tell the story of an object you've kept for years.",
+
+      "Share a moment when you felt truly proud of yourself.",
+
+      "Describe your earliest memory of helping someone.",
+
+      "Tell about a skill you learned from an older generation.",
+
+      "Share a story about overcoming a fear.",
+
+      "Describe a meal that holds special significance for you.",
+
+      "Tell about a time when you had to adapt to a new environment.",
+
+      "Share a moment of unexpected kindness you witnessed.",
+
+      "Describe a journey that changed your understanding of the world.",
+
+      "Tell the story of how you met your closest friend.",
+
+      "Share a tradition from your culture you find meaningful.",
+
+      "Describe a time when you turned a mistake into an opportunity.",
+
+      "Tell about a local hero in your community.",
+
+      "Share a memory of learning something new as an adult.",
+
+      "Describe a moment when you felt deeply connected to others.",
+
+      "Tell about a time when you stood up for what you believe in.",
+
+      "Share a story about a handmade gift you gave or received.",
+
+      "Describe your relationship with a place you call home.",
+
+      "Tell about a time when you learned by doing rather than watching.",
+
+      "Share a moment when music or art moved you deeply.",
+
+      "Describe a childhood game or activity you still remember.",
+
+      "Tell the story of a risk you took that paid off.",
+
+      "Share a memory involving your favorite weather.",
+
+      "Describe a time when you experienced culture shock.",
+
+      "Tell about a mentor who influenced your path.",
+
+      "Share a story about creating something from scratch.",
+
+      "Describe a moment when you found beauty in simplicity.",
+
+      "Tell about a time you collaborated on something meaningful.",
+
+      "Share a memory of celebrating a personal achievement.",
+
+      "Describe your experience volunteering or helping your community.",
+
+      "Tell about a book, film, or story that inspired you to act.",
+
+      "Share a moment when you reconnected with your roots.",
+
+      "Describe a time when patience led to a breakthrough.",
+
+      "Tell the story of a local festival or celebration you attended.",
+
+      "Share a memory of exploring somewhere new in your city.",
+
+      "Describe a time when you learned from a younger person.",
+
+      "Tell about a sustainable practice you've adopted and why.",
+
+      "Share a story about bridging a generational gap.",
+
+      "Describe a moment when you felt grateful for what you have.",
+
+      "Tell about a time when you had to let go of something.",
+
+      "Share a memory connected to a family recipe.",
+
+      "Describe your experience learning a new language or dialect.",
+
+      "Tell about a time when creativity solved a problem.",
+
+      "Share a story about making a positive environmental choice.",
+
+      "Describe a moment when you felt part of something bigger.",
+
+      "Tell about a time you turned a hobby into something meaningful.",
+
+      "Share a memory of a spontaneous adventure.",
+
+      "Describe a lesson you learned from failure.",
+
+      "Tell the story of how you discovered your passion.",
+
+      "Share a moment when you witnessed positive change in your community.",
+
+      "Describe a time when you had to speak up when it was difficult.",
+
+      "Tell about a ritual that brings you peace or clarity.",
+
+      "Share a story about respecting differences.",
+
+      "Describe a moment when you felt truly heard and understood.",
+
+      "Tell the story of your most meaningful conversation this month."
+
+    ];
+
+
+
+    let currentCard = "";
+
+    let drawnCards = new Set();
+
+    let hasDrawn = false;
+
+    let isAnimating = false;
+
+
+
+    function drawCard() {
+
+      if (isAnimating) return;
+
+      isAnimating = true;
+
+
+
+      const cardFlip = document.getElementById('cardFlip');
+
+      const shareBtn = document.getElementById('shareBtn');
+
+
+
+      // Prefer undrawn cards when possible
+
+      let available = [];
+
+      for (let i = 0; i < cards.length; i++) {
+
+        if (!drawnCards.has(i)) available.push(i);
+
+      }
+
+      if (available.length === 0) {
+
+        drawnCards.clear();
+
+        available = cards.map((_, i) => i);
+
+      }
+
+
+
+      const randomIndex = available[Math.floor(Math.random() * available.length)];
+
+      currentCard = cards[randomIndex];
+
+      drawnCards.add(randomIndex);
+
+
+
+      // Swipe out
+
+      cardFlip.classList.remove('entering');
+
+      cardFlip.classList.add('swiping-out');
+
+
+
+      setTimeout(() => {
+
+        // Create new card
+
+        const newCard = document.createElement('div');
+
+        newCard.className = 'card';
+
+        newCard.textContent = currentCard;
+
+
+
+        cardFlip.innerHTML = '';
+
+        cardFlip.appendChild(newCard);
+
+
+
+        // Prepare for entrance
+
+        cardFlip.classList.remove('swiping-out');
+
+        cardFlip.classList.add('swiping-in');
+
+
+
+        // Force reflow then animate in
+
+        requestAnimationFrame(() => {
+
+          requestAnimationFrame(() => {
+
+            cardFlip.classList.remove('swiping-in');
+
+            cardFlip.classList.add('entering');
+
+
+
+            setTimeout(() => {
+
+              cardFlip.classList.remove('entering');
+
+              isAnimating = false;
+
+            }, 650);
+
+          });
+
+        });
+
+      }, 480);
+
+
+
+      shareBtn.disabled = false;
+
+      hasDrawn = true;
+
+    }
+
+
+
+    function shareCard() {
+
+      if (!currentCard) {
+
+        showToast('Draw a card first!');
+
+        return;
+
+      }
+
+
+
+      const text = `I drew a story card from EKOLITIKA:\n\n"${currentCard}"\n\n#StoryStarterCards #EKOLITIKA #SustainableStorytelling`;
+
+
+
+      if (navigator.share) {
+
+        navigator.share({
+
+          title: 'Story Starter Card by EKOLITIKA',
+
+          text: text,
+
+          url: window.location.href
+
+        }).catch(() => {
+
+          fallbackShare(text);
+
+        });
+
+      } else {
+
+        fallbackShare(text);
+
+      }
+
+    }
+
+
+
+    function fallbackShare(text) {
+
+      const textarea = document.createElement('textarea');
+
+      textarea.value = text;
+
+      textarea.style.position = 'fixed';
+
+      textarea.style.opacity = '0';
+
+      textarea.setAttribute('readonly', '');
+
+      document.body.appendChild(textarea);
+
+      textarea.select();
+
+      textarea.setSelectionRange(0, 99999);
+
+
+
+      try {
+
+        document.execCommand('copy');
+
+        showToast('✓ Card text copied to clipboard!');
+
+      } catch (err) {
+
+        showToast('Copy this to share');
+
+        alert(text);
+
+      }
+
+
+
+      document.body.removeChild(textarea);
+
+    }
+
+
+
+    function showToast(message) {
+
+      const toast = document.getElementById('toast');
+
+      toast.textContent = message;
+
+      toast.classList.add('show');
+
+      setTimeout(() => {
+
+        toast.classList.remove('show');
+
+      }, 2600);
+
+    }
+
+
+
+    // Update deck info
+
+    document.getElementById('deckInfo').textContent = `${cards.length} cards in the deck`;
+
+  </script>
+
+</body>
+
+</html>
+
+
